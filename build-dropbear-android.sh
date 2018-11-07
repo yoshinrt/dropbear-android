@@ -35,7 +35,7 @@ SYSROOT=${TOOLCHAIN}/sysroot
 export CC="$COMPILER --sysroot=$SYSROOT"
 
 # Android 5.0 Lollipop and greater require PIE. Default to this unless otherwise specified.
-if [ -z $DISABLE_PIE ]; then export CFLAGS="-g -O2 -pie -fPIE"; else echo "Disabling PIE compilation..."; fi
+if [ -z $DISABLE_PIE ]; then export CFLAGS="-g -O2 -pie -fPIE -D__ANDROID_API__=21"; else echo "Disabling PIE compilation..."; fi
 sleep 5
 # Use the default platform target for pie binaries 
 unset GOOGLE_PLATFORM
@@ -55,6 +55,7 @@ echo
 # Begin applying changes to make Android compatible
 # Apply the compatibility patch
 patch -p1 < ../android-compat.patch
+patch -p1 < ../disable-getpass.patch
 cd -
 
 echo "Compiling for ARM"  
