@@ -55,7 +55,7 @@ echo
 # Begin applying changes to make Android compatible
 # Apply the compatibility patch
 patch -p1 < ../android-compat.patch
-patch -p1 < ../disable-getpass.patch
+patch -p1 < ../getpass.patch
 cd -
 
 echo "Compiling for ARM"  
