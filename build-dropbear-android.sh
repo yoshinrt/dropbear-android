@@ -6,8 +6,8 @@ if [ -z ${TOOLCHAIN} ]; then echo "TOOLCHAIN must be set. See README.md for more
 
 # Setup the environment
 export TARGET=../target
-# Specify binaries to build. Options: dropbear dropbearkey scp dbclient
-export PROGRAMS="dropbear dropbearkey"
+# Specify binaries to build. Options: dropbear dropbearkey dropbearconvert scp dbclient
+export PROGRAMS="dropbear dropbearkey dropbearconvert scp dbclient"
 # Which version of Dropbear to download for patching
 export VERSION=2018.76
 
