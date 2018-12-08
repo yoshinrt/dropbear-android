@@ -43,7 +43,7 @@ unset GOOGLE_PLATFORM
 # Apply the new config.guess and config.sub now so they're not patched
 cp ../config.guess ../config.sub .
     
-./configure --host=$HOST --disable-utmp --disable-wtmp --disable-utmpx --disable-zlib --disable-syslog > /dev/null 2>&1
+./configure --host=$HOST --disable-utmp --disable-wtmp --disable-utmpx --disable-zlib --disable-syslog --disable-lastlog > /dev/null 2>&1
 
 echo "Done generating files"
 sleep 2
@@ -56,13 +56,14 @@ echo
 # Apply the compatibility patch
 patch -p1 < ../android-compat.patch
 patch -p1 < ../getpass.patch
+patch -p1 < ../openpty.patch
 cd -
 
 echo "Compiling for ARM"  
 
 cd dropbear-$VERSION
     
-./configure --host=$HOST --disable-utmp --disable-wtmp --disable-utmpx --disable-zlib --disable-syslog
+./configure --host=$HOST --disable-utmp --disable-wtmp --disable-utmpx --disable-zlib --disable-syslog --disable-lastlog
 
 make PROGRAMS="$PROGRAMS"
 MAKE_SUCCESS=$?
